@@ -2,7 +2,7 @@ on:
   push
 
 jobs:
-  check-commit-message:
+  commit-module:
     runs-on: ubuntu-latest
     steps:
       - name: checkout code
@@ -16,23 +16,17 @@ jobs:
         id: check_message
         run: |
           if [[ "${{ github.event.head_commit.message }}" == *"Update"* ]]; then
-            echo "Condition matches"
+            - id: set_test_output
+              echo "Condition matches."
+              run: echo "::set-output name=should_deploy::yes"
           else
-            echo "Condition does not match"
+              echo "Condition does not match."
+              run: echo "::set-output name=should_deploy::no"
           fi
-
-conditional_job_success:
-   name: On Success
-   runs-on: ubuntu-latest
-   if: success()
-   steps:
-     - name: Display the output
-       run: echo "Previous job ended OK."
-
-conditional_job_failure:
-   name: On Failure
-   runs-on: ubuntu-latest
-   if: failure()
-   steps:
-     - name: Display the output
-       run: echo "Previous job has failed."
+          
+  deploy-module:
+     runs-on: ubuntu-latest
+     needs: commit-mod
+     if: needs.commit-mod.outputs.should_deploy == 'yes'
+     steps:
+      - run: echo "Deploying project."
