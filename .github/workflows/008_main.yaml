@@ -1,0 +1,58 @@
+on:
+  push
+
+jobs:
+   job1-display_output:
+     name: Job1 - Display File
+     runs-on: ubuntu-latest
+     steps:
+        - name: Checkout repository
+          uses: actions/checkout@v2
+
+        - name: Job1 - Display the content of file
+          run: |
+            cat test.txt
+          shell: bash
+
+        - name: Job1 - Display the content of local output
+          id: myoutput
+          run: echo "::set-output name=city::Indianapolis"
+     outputs:
+        job1_output: ${{ steps.myoutput.outputs.city }}
+
+   conditional_job_success:
+     name: On Success
+     runs-on: ubuntu-latest
+     if: success()
+     steps:
+       - name: Display the output
+         run: echo "Previous job ended OK."
+
+   conditional_job_failure:
+     name: On Failure
+     runs-on: ubuntu-latest
+     if: failure()
+     steps:
+       - name: Display the output
+         run: echo "Previous job has failed."
+         
+   job2-display_output:
+     name: Job2 - Display Variables
+     runs-on: ubuntu-latest
+     needs: job1-display_output
+     env:
+        name: "Harry"
+     environment: Practice
+     steps:
+        - name: Job2 - Display the content of variable
+          run: |
+            echo "The local name is $name"
+            echo "The environment name is ${{ vars.name }}"
+            echo "The password is ${{ secrets.password }}"
+            echo "The city is ${{ needs.job1-display_output.outputs.job1_output }}"
+          shell: bash
+          
+   call-reusable-workflow:
+     uses: ./.github/workflows/007-reusable-workflow.yaml
+     with:
+        message: "This is the main workflow."
