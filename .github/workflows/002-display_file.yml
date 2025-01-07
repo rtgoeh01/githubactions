@@ -16,6 +16,6 @@ jobs:
           uses: actions/checkout@v2
 
         - name: Display the output of the file
-          run |
-             cat test.txt
+          run: |
+            cat test.txt
           shell: bash
