@@ -20,8 +20,11 @@ jobs:
      needs: job1-display_output
      env:
         name: "Harry"
+     environment: Practice
      steps:
         - name: Job2 - Display the content of variable
           run: |
-            echo "My name is $name"
+            echo "The local name is $name"
+            echo "The environment name is ${{ vars.name }}"
+            echo "The password is ${{ secrets.name }}"
           shell: bash
