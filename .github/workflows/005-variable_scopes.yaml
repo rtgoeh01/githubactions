@@ -16,9 +16,9 @@ jobs:
 
         - name: Job1 - Display the content of local output
           id: myoutput
-          run: echo "::set-output city=mystring::Indianapolis"
+          run: echo "::set-output name=city::Indianapolis"
      outputs:
-        job1_output: ${{ steps.myoutput.outputs.mystring }}
+        job1_output: ${{ steps.myoutput.outputs.city }}
         
    job2-display_output:
      name: Job2 - Display Variables
