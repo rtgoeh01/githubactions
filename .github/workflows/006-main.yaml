@@ -35,8 +35,8 @@ jobs:
             echo "The password is ${{ secrets.password }}"
             echo "The city is ${{ needs.job1-display_output.outputs.job1_output }}"
           shell: bash
-
-call-reusable-workflow:
-    uses: ./.githubactions/workflows/007-reuseable-workflow.yaml
-    with:
-      message: "This is the main workflow."
+          
+   call-reusable-workflow:
+     uses: ./.github/workflows/007-reuseable-workflow.yaml
+     with:
+        message: "This is the main workflow."
