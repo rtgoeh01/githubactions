@@ -12,10 +12,10 @@ jobs:
         id: commit_message
         run: echo "Commit message- ${{ github.event.head_commit.message }}"
 
-      - name: Check if the commit message contains "conditions"
+      - name: Check if the commit message contains "conditional"
         id: check_message
         run: |
-          if [[ "${{ github.event.head_commit.message }}" == *"conditions" ]]; then
+          if [[ "${{ github.event.head_commit.message }}" == *"conditional" ]]; then
             echo "Condition matches"
           else
             echo "Condition does not match"
