@@ -16,17 +16,16 @@ jobs:
         id: check_message
         run: |
           if [[ "${{ github.event.head_commit.message }}" == *"Update"* ]]; then
-            - id: set_test_output
-              echo "Condition matches."
-              run: echo "::set-output name=should_deploy::yes"
+            echo "Condition matches."
+            run: echo "::set-output name=continue::yes"
           else
-              echo "Condition does not match."
-              run: echo "::set-output name=should_deploy::no"
+            echo "Condition does not match."
+            run: echo "::set-output name=continue::no"
           fi
           
   deploy-module:
      runs-on: ubuntu-latest
      needs: commit-module
-     if: needs.commit-module.outputs.should_deploy == 'yes'
+     if: needs.commit-module.outputs.continue == 'yes'
      steps:
       - run: echo "Deploying project."
