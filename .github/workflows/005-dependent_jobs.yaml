@@ -33,5 +33,5 @@ jobs:
             echo "The local name is $name"
             echo "The environment name is ${{ vars.name }}"
             echo "The password is ${{ secrets.password }}"
-            echo "The city is ${{ needs.job1-display_output.job1_output }}"
+            echo "The city is ${{ needs.job1-display_output.outputs.job1_output }}"
           shell: bash
