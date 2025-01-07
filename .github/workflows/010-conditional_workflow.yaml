@@ -20,3 +20,19 @@ jobs:
           else
             echo "Condition does not match"
           fi
+
+conditional_job_success:
+   name: On Success
+   runs-on: ubuntu-latest
+   if: success()
+   steps:
+     - name: Display the output
+       run: echo "Previous job ended OK."
+
+conditional_job_failure:
+   name: On Failure
+   runs-on: ubuntu-latest
+   if: failure()
+   steps:
+     - name: Display the output
+       run: echo "Previous job has failed."
