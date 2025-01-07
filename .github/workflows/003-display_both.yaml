@@ -15,9 +15,9 @@ jobs:
           shell: bash
           
    job2-display_output:
-     name: display the content
+     name: display the content of echo command
      runs-on: ubuntu-latest
-     needs: job1-display-output  # for sequential jobs
+     needs: job1-display_output
      steps:
         - name: job2-Display the content
           run: |
