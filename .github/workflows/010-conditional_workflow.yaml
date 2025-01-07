@@ -17,15 +17,17 @@ jobs:
         run: |
           if [[ "${{ github.event.head_commit.message }}" == *"Update"* ]]; then
             echo "Condition matches."
-            run: echo "::set-output name=ready::yes"
+            run: echo "::set-output name=status::yes"
           else
             echo "Condition does not match."
-            run: echo "::set-output name=ready::no"
+            run: echo "::set-output name=status::no"
           fi
+    outputs:
+      commit_output: ${{ steps.check_message.outputs.status }}
           
   deploy-module:
      runs-on: ubuntu-latest
      needs: commit-module
-     if: needs.commit-module.outputs.ready == 'yes'
+     if: needs.commit-module.outputs.commit_output == 'yes'
      steps:
       - run: echo "Deploying project."
