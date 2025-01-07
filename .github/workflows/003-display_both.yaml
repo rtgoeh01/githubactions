@@ -1,4 +1,15 @@
 on:
-   push
+  push
 
-   
+jobs:
+   job1-display_output:
+     name: display a file
+     runs-on: ubuntu-latest
+     steps:
+        - name: Checkout repository
+          uses: actions/checkout@v2
+
+        - name: job1-Display the output of the file
+          run: |
+            cat test.txt
+          shell: bash
