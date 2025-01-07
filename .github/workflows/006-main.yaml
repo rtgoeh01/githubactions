@@ -37,6 +37,6 @@ jobs:
           shell: bash
           
    call-reusable-workflow:
-     uses: ./.github/workflows/007-reuseable-workflow.yaml
+     uses: ./.github/workflows/007-reusable-workflow.yaml
      with:
         message: "This is the main workflow."
