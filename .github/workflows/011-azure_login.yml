@@ -12,19 +12,3 @@ jobs:
          uses: actions/login@v1
          with:
            creds: ${{ secrets.AZURE_CREDENTIALS }}
-
-  condition_job_success:
-     name: On Success
-     runs-on: ubuntu-latest
-     if: success()
-     steps:
-       - name: Display the output
-         run: echo "Login Succeeded."
-
-  condition_job_failure:
-     name: On Failure
-     runs-on: ubuntu-latest
-     if: failure()
-     steps:
-       - name: Display the output
-         run: echo "Login Failed."
