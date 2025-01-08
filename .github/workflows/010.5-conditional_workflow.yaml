@@ -37,7 +37,8 @@ jobs:
       - name: Verify if status is true or false.
         id: check_status
         run: |
-          echo "Current status value = ${{ needs.commit-module.outputs.condition_output }}"
+          echo "Current status value = ${{ needs.commit-module.outputs.check_message}}"
+          #echo "Current status value = ${{ needs.commit-module.outputs.condition_output }}"
           if [[ needs.commit-module.outputs.condition_output == "true" ]]; then
             echo "Starting deployment!"
           else
