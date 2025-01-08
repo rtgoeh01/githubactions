@@ -18,14 +18,14 @@ jobs:
 
       - name: Create Resource Group
         run: |
-          #az group create --name "rg-rgoehring" --location eastus
+          az group create --name "rg-rgoehring" --location eastus
           az group list --output table
 
       - name: Create App Service Plan
         run: |
-          #az appservice plan create --name "app-rgoehring" --resource-group "rg-rgoehring" --sku F1 --location eastus
+          az appservice plan create --name "app-rgoehring" --resource-group "rg-rgoehring" --sku F1 --location eastus
 
       - name: Create a Azure vault
         run: |
-          #az keyvault create --name "kv-rgoehring" --resource-group "rg-rgoehring" --location eastus
+          az keyvault create --name "kv-rgoehring" --resource-group "rg-rgoehring" --location eastus
           az keyvault list --output table
