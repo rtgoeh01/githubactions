@@ -17,10 +17,8 @@ jobs:
         run: |
           if [[ "${{ github.event.head_commit.message }}" == *"Update"* ]]; then
             echo "status=true" >> $GITHUB_OUTPUT
-            echo "status set to ${{ steps.check_message.outputs.status }}"
           else
             echo "status=false" >> $GITHUB_OUTPUT
-            echo "status set to ${{ steps.check_message.outputs.status }}"
           fi
     outputs:
        condition_output: ${{ steps.check_message.outputs.status }}
@@ -37,7 +35,6 @@ jobs:
         run: |
           echo "Current status value = ${{ needs.commit-module.outputs.condition_output }}"
           #if [[ needs.commit-module.outputs.condition_output == "true" ]]; then
-          if [[ needs.commit-module.check_message.outputs.status == "true" ]]; then
             echo "Starting deployment!"
           else
             echo "Exit."
