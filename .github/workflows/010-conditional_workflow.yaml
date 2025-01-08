@@ -35,7 +35,7 @@ jobs:
        - name: Verify if status is true or false.
          id: check_status
          run: |
-          if: needs.commit-module.outputs.condition_output == 'true' then 
+          if: [[needs.commit-module.outputs.condition_output == 'true']]; then 
             echo "Ready to deploy."
           else
             echo "NOT ready to deploy."
