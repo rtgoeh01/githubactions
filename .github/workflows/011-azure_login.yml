@@ -17,5 +17,3 @@ jobs:
     - name: Login Confirmation
       if: success ()
         run: echo "Login Succeeded."
-      if: failure ()
-        run: echo "Login Failed."  
