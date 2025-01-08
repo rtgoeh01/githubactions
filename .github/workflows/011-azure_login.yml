@@ -1,0 +1,21 @@
+on:
+  push
+
+jobs:
+  login_to_azure:
+  runs-on: ubuntu-latest
+
+  steps:
+    - name: Checkout Code
+      uses: actions/checkout@v2
+
+    - name: Login to Azure
+      uses: actions/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+    - name: Login Confirmation
+      if: success ()
+        run: echo "Login Succeeded."
+      if: failure ()
+        run: echo "Login Failed."  
