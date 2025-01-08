@@ -1,3 +1,5 @@
+name: Using GITHUB_OUTPUT
+
 on:
   push
 
