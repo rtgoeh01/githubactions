@@ -3,16 +3,15 @@ on:
 
 jobs:
   login_to_azure:
-  runs-on: ubuntu-latest
+     runs-on: ubuntu-latest
+     steps:
+       - name: Checkout Code
+         uses: actions/checkout@v2
 
-  steps:
-    - name: Checkout Code
-      uses: actions/checkout@v2
-
-    - name: Login to Azure
-      uses: actions/login@v1
-      with:
-        creds: ${{ secrets.AZURE_CREDENTIALS }}
+       - name: Login to Azure
+         uses: actions/login@v1
+         with:
+           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
   conditional_job_success:
      name: On Success
