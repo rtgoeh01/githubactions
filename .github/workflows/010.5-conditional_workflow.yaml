@@ -16,11 +16,11 @@ jobs:
         id: check_message
         run: |
           if [[ "${{ github.event.head_commit.message }}" == *"Update"* ]]; then
-            echo "Condition matches."
+            echo "OK >> Set status = true"
             #echo "::set-output name=status::true"
             echo "status=true" >> $GITHUB_OUTPUT
           else
-            echo "Condition does not match."
+            echo "NOT OK >> Set status = false"
             #echo "::set-output name=status::false"
             echo "status=false" >> $GITHUB_OUTPUT
           fi
@@ -37,7 +37,7 @@ jobs:
       - name: Verify if status is true or false.
         id: check_status
         run: |
-          echo "Status = ${{ needs.commit-module.outputs.condition_output }}"
+          echo "Current status value = ${{ needs.commit-module.outputs.condition_output }}"
           if [[ needs.commit-module.outputs.condition_output == "true" ]]; then
             echo "Starting deployment!"
           else
