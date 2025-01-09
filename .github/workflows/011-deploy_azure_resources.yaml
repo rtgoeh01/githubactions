@@ -1,4 +1,4 @@
-name: Azure Connection Test
+name: Azure Connection
 
 on:
   push
